@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Perfil;
+use App\User;
 
 class PerfilController extends Controller
 {
@@ -73,7 +74,8 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        return view('perfil.editar', ['perfil'=>$perfil]);
     }
 
     /**
@@ -85,7 +87,14 @@ class PerfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perfil = Perfil::find($id);
+        $perfil->nome = $request->input('nome');
+        $perfil->biografia = $request->input('biografia');
+        $perfil->numero = $request->input('numero');
+        $perfil->imagem = $request->input('imagem');
+
+        $perfil->save();
+        return view('perfil.exibir', ['perfil'=>$perfil]);
     }
 
     /**
@@ -96,6 +105,12 @@ class PerfilController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        $perfil->delete();
+
+        $user = User::find(auth()->user()->id);
+        $user->delete();
+
+        return redirect('login');
     }
 }
