@@ -11,6 +11,8 @@
 |
 */
 
+Route::resource('perfil', 'PerfilController');
+
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -19,4 +21,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/perfil/home/{id}', 'PerfilController@index')->name('perfil');
+//Route::get('/perfil/{id}', 'PerfilController@show')->name('perfil.show');
+
+//Route::post('/perfil/store', 'PerfilController@store')->name('perfil.store');
+
+//Route::get('/perfil/create/{id}', 'PerfilController@create')->name('perfil.create');
+
+//Route::get('/perfil/criar/{id}', 'PerfilController@create')->name('perfil.create');
+
+//Route::get('/perfil/criar/{id}', 'PerfilController@create')->name('perfil.create');
