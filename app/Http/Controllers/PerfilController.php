@@ -18,10 +18,9 @@ class PerfilController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id)
+    public function index()
     {
-        $perfil = Perfil::find($id);
-        return view('perfil.exibir', ['perfil'=>$perfil]);
+        //
     }
 
     /**
@@ -31,7 +30,7 @@ class PerfilController extends Controller
      */
     public function create()
     {
-        //
+        return view('perfil.criar');
     }
 
     /**
@@ -42,7 +41,16 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $perfil = new Perfil;
+        $perfil->nome = $request->input('nome');
+        $perfil->biografia = $request->input('biografia');
+        $perfil->numero = $request->input('numero');
+        $perfil->imagem = $request->input('imagem');
+        $perfil->user_id = auth()->user()->id;
+
+        $perfil->save();
+
+        return view('perfil.exibir', ['perfil'=>$perfil]);
     }
 
     /**
@@ -53,7 +61,8 @@ class PerfilController extends Controller
      */
     public function show($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        return view('perfil.exibir', ['perfil'=>$perfil]);
     }
 
     /**
