@@ -17,6 +17,15 @@
                     <p><strong>Nome:</strong> {{$perfil->nome}}</p>
                     <p><strong>Biografia:</strong> {{$perfil->biografia}}</p>
                     <p><strong>numero:</strong> {{$perfil->numero}}</p>
+                    <p><a href="{{route('perfil.edit', $perfil->id)}}">Editar Perfil</p>
+                    <p>
+                        <form method="post" action="{{route('perfil.destroy',   $perfil->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="excluir perfil">
+                        </form>
+                    </p>
+                
         
                 </div>
             </div>
