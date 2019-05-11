@@ -24,7 +24,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <img src="{{asset('img/essa.jpg')}}" class="img-fluid" alt="Responsive image">
+            <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="Responsive image">
         </div>
     </div>
     <div class="row justify-content-center">
