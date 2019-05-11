@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Perfil;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = User::find(auth()->user()->id);
+        $perfil = $user->perfil;
+
+        return view('perfil.exibir',['perfil'=>$perfil]);
     }
+
+
 }
