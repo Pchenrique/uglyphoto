@@ -13,14 +13,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if (session('erro'))
+                        <div class="alert alert-danger">
+                            {{ session('erro') }}
+                        </div>
+                    @endif
 
-                    <form action="{{route('perfil.update', $perfil->id)}}" method="POST">
+                    <form action="{{route('perfil.update', $perfil->id)}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						@method('PUT')
 
 							<div class="form-group"> 
-					       		<label>imagem</label>  
-					            <input class="form-control" name="imagem" type="text" value="{{$perfil->imagem}}">
+					       		<label>Foto do Perfil</label>  
+					            <input class="" name="imagem" type="file">
 					        </div>
 
 					       	<div class="form-group"> 
