@@ -13,7 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <img src="C:\xampp\htdocs\uglyphoto\public\imagem-perfil\perfil-id_6.jpg" width="200" height="200">
+                    {{$perfil->imagem}}
                     <p><strong>Nome:</strong> {{$perfil->nome}}</p>
                     <p><strong>Biografia:</strong> {{$perfil->biografia}}</p>
                     <p><strong>numero:</strong> {{$perfil->numero}}</p>
