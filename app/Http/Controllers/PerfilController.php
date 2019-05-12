@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Perfil;
 use App\User;
+use File;
+
 
 class PerfilController extends Controller
 {
@@ -42,16 +45,32 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
+
+       if(Input::file('imagem')){
+            $imagem = Input::file('imagem');
+            $extensao = $imagem->getClientOriginalExtension();
+
+            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg'){
+                return back()->with('erro','Erro: Este arquivo não é imagem');
+            }
+        }
+
         $perfil = new Perfil;
         $perfil->nome = $request->input('nome');
         $perfil->biografia = $request->input('biografia');
         $perfil->numero = $request->input('numero');
-        $perfil->imagem = $request->input('imagem');
+        $perfil->imagem = "";
         $perfil->user_id = auth()->user()->id;
 
         $perfil->save();
 
-        return view('perfil.exibir', ['perfil'=>$perfil]);
+        if(Input::file('imagem')){
+            File::move($imagem,public_path().'\imagem-perfil\perfil-id_'.$perfil->id.'.'.$extensao);
+            $perfil->imagem = public_path().'\imagem-perfil\perfil-id_'.$perfil->id.'.'.$extensao;
+            $perfil->save();
+        }
+
+        return redirect('home');
     }
 
     /**
@@ -87,14 +106,30 @@ class PerfilController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if(Input::file('imagem')){
+            $imagem = Input::file('imagem');
+            $extensao = $imagem->getClientOriginalExtension();
+
+            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg'){
+                return back()->with('erro','Erro: Este arquivo não é imagem');
+            }
+        }
+
         $perfil = Perfil::find($id);
         $perfil->nome = $request->input('nome');
         $perfil->biografia = $request->input('biografia');
         $perfil->numero = $request->input('numero');
-        $perfil->imagem = $request->input('imagem');
+        $perfil->imagem = "";
 
         $perfil->save();
-        return view('perfil.exibir', ['perfil'=>$perfil]);
+
+        if(Input::file('imagem')){
+            File::move($imagem,public_path().'\imagem-perfil\perfil-id_'.$perfil->id.'.'.$extensao);
+            $perfil->imagem = public_path().'\imagem-perfil\perfil-id_'.$perfil->id.'.'.$extensao;
+            $perfil->save();
+        }
+        return redirect('home');
     }
 
     /**
