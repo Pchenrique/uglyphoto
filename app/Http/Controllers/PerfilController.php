@@ -120,7 +120,7 @@ class PerfilController extends Controller
         $perfil->nome = $request->input('nome');
         $perfil->biografia = $request->input('biografia');
         $perfil->numero = $request->input('numero');
-        $perfil->imagem = "";
+        $perfil->imagem;
 
         $perfil->save();
 
