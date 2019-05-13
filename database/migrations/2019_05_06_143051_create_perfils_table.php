@@ -18,7 +18,7 @@ class CreatePerfilsTable extends Migration
             $table->string('nome', 60);
             $table->string('biografia', 60);
             $table->string('numero', 14);
-            $table->string('imagem', 100);
+            $table->string('imagem', 150);
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
