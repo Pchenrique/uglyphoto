@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Postagem;
+use App\User;
+use File;
 
 class PostagemController extends Controller
 {
@@ -29,7 +33,7 @@ class PostagemController extends Controller
      */
     public function create()
     {
-        //
+        return view('postagem.criar');
     }
 
     /**
@@ -40,7 +44,33 @@ class PostagemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Input::file('caminho')){
+            $imagem = Input::file('caminho');
+            $extensao = $imagem->getClientOriginalExtension();
+
+            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg'){
+                return back()->with('erro','Erro: Este arquivo não é imagem');
+            }
+        }
+
+        $user = User::find(auth()->user()->id);
+        $id = $user->perfil->id;
+
+        $postagem = new Postagem;
+        $postagem->legenda = $request->input('legenda');
+        $postagem->caminho = "";
+        $postagem->curtidas = 0;
+        $postagem->perfil_id = $id;
+
+        $postagem->save();
+
+        if(Input::file('caminho')){
+            File::move($imagem,public_path().'\imagem-postagem\postagem-id_'.$postagem->id.'.'.$extensao);
+            $postagem->caminho = public_path().'\imagem-postagem\postagem-id_'.$postagem->id.'.'.$extensao;
+            $postagem->save();
+        }
+
+        return redirect('home');
     }
 
     /**
@@ -62,7 +92,8 @@ class PostagemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $postagem = Postagem::find($id);
+        return view('postagem.editar', ['postagem'=>$postagem]);
     }
 
     /**
@@ -74,7 +105,10 @@ class PostagemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $postagem = Postagem::find($id);
+        $postagem->legenda = $request->input('legenda');
+        $postagem->imagem;
+        $postagem->save();
     }
 
     /**
