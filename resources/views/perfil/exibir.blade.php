@@ -29,7 +29,7 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <div class="col-lg-6 text-center">
-                    <img src="{{asset('imagem-perfil/perfil-id_6.jpg')}}" alt="perfil" class="rounded-circle" id="foto" width="170px" height="170px">
+                    <img src="{{asset('imagem-perfil/'. basename($perfil->imagem))}}" alt="perfil" class="rounded-circle" id="foto" width="170px" height="170px">
                 </div> 
                 <strong>UP</strong>
             </div>
@@ -94,7 +94,7 @@
                 </div>
             </nav>
             <div class="card" style="width: 20rem;">
-                <img class="card-img-top" src="{{asset('imagem-perfil/perfil-id_6.jpg')}}" alt="Card image cap">
+                <img class="card-img-top" src="{{}}" alt="Card image cap">
                 <div class="list-group list-group-flush">
                     <li class="list-group-item">Aqui vai aparecer os likes</li>
                 </div>
@@ -112,15 +112,7 @@
                     </div>
                 </form>    
             </div>
-            
-
-
-
-
-
-
-
-
+    
         </div>
     </div>
 
