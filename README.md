@@ -7,3 +7,5 @@ Desenvolvimento de uma rede social de fotos utilizando os conhecimentos da disci
 
 [Tutorial: Como clonar o projeto para seu computador](https://medium.com/@mateusgalasso/laravel-importando-projetos-dc31a3488d04)
 
+<i>Detalhes: Dentro da pasta "public" criar uma nova pasta chamada "imagem-perfil"</i>
+
