@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Perfil;
 use App\User;
+use App\Postagem;
 use File;
 
 
@@ -50,7 +51,7 @@ class PerfilController extends Controller
             $imagem = Input::file('imagem');
             $extensao = $imagem->getClientOriginalExtension();
 
-            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg'){
+            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg' && $extensao != 'JPG' && $extensao != 'PNG' && $extensao != 'JPEG'){
                 return back()->with('erro','Erro: Este arquivo não é imagem');
             }
         }
@@ -111,7 +112,7 @@ class PerfilController extends Controller
             $imagem = Input::file('imagem');
             $extensao = $imagem->getClientOriginalExtension();
 
-            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg'){
+            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg' && $extensao != 'JPG' && $extensao != 'PNG' && $extensao != 'JPEG'){
                 return back()->with('erro','Erro: Este arquivo não é imagem');
             }
         }
