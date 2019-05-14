@@ -98,19 +98,26 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-12">
-                        <h3 class="display-5">Suas Fotos</h3>
+                        <h3 class="display-5">Minhas Fotos</h3>
                         <hr>
                     </div>
                 </div>
                 <div class="row no-padding">
+                    @foreach($perfil->postagens as $postagem)
                     <div class="col-sm-4">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{asset('imagem-postagem/postagem-id_1.jpg')}}" alt="Card image cap">
+                            <img class="card-img-top" src="{{asset('imagem-postagem/'. basename($postagem->caminho))}}" alt="Card image cap">
                             <div class="card-body">
-                                <p>Aqui vai ficar os likes</p>
+                                <p>{{$postagem->legenda}}</p>
                             </div>
+                            <form id="formu" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <a class="text-center"> <i class="fas fa-trash-alt"></i><input type="submit"  id="excluir" value="Excluir postagem"></a>
+                            </form>
                             <div class="card-body">
-                                <a href="#" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
+                                <p>{{count($postagem->curtidas)}}</p>
+                                <a href="{{route('curtir', $postagem->id)}}" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
                                 <a class="btn text-info" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-comment-alt"></i> Comentar</a>
                             </div>
                             <div class="collapse" id="collapseExample1">
@@ -123,46 +130,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{asset('imagem-perfil/perfil-id_6.jpg')}}" alt="Card image cap">
-                            <div class="card-body">
-                                <p>Aqui vai ficar os likes</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
-                                <a class="btn text-info" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-comment-alt"></i> Comentar</a>
-                            </div>
-                            <div class="collapse" id="collapseExample2">
-                                <textarea class="form-control" id="textarea" rows="3" placeholder="Escreva um comentário"></textarea>
-                                <a href="#" class="btn text-info" ><i class="fas fa-paper-plane"></i> Comentar</a>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
-                                <li class="list-group-item">Aqui vai aparecer os comentarios</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{asset('imagem-perfil/perfil-id_6.jpg')}}" alt="Card image cap">
-                            <div class="card-body">
-                                <p>Aqui vai ficar os likes</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
-                                <a class="btn text-info" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-comment-alt"></i> Comentar</a>
-                            </div>
-                            <div class="collapse" id="collapseExample3">
-                                <textarea class="form-control" id="textarea" rows="3" placeholder="Escreva um comentário"></textarea>
-                                <a href="#" class="btn text-info" ><i class="fas fa-paper-plane"></i> Comentar</a>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
-                                <li class="list-group-item">Aqui vai aparecer os comentarios</li>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
