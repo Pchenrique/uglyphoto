@@ -10,4 +10,14 @@ class Perfil extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function postagens()
+    {
+        return $this->hasMany('App\Postagem');
+    }
+
+    public function curtidas()
+    {
+        return $this->hasMany('App\Curtida');
+    }
 }
