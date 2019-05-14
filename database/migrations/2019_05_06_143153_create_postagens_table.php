@@ -17,7 +17,7 @@ class CreatePostagensTable extends Migration
              $table->Increments('id');
             $table->integer('curtidas');
             $table->string('legenda', 60);
-            $table->string('caminho', 60);
+            $table->string('caminho', 150);
             $table->unsignedInteger('perfil_id');
             $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');
             $table->timestamps();
