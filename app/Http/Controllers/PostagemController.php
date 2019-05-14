@@ -48,7 +48,7 @@ class PostagemController extends Controller
             $imagem = Input::file('caminho');
             $extensao = $imagem->getClientOriginalExtension();
 
-            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg'){
+            if($extensao != 'jpg' && $extensao != 'png' && $extensao != 'jpeg' && $extensao != 'JPG' && $extensao != 'PNG' && $extensao != 'JPEG'){
                 return back()->with('erro','Erro: Este arquivo não é imagem');
             }
         }
@@ -59,7 +59,6 @@ class PostagemController extends Controller
         $postagem = new Postagem;
         $postagem->legenda = $request->input('legenda');
         $postagem->caminho = "";
-        $postagem->curtidas = 0;
         $postagem->perfil_id = $id;
 
         $postagem->save();
@@ -119,6 +118,10 @@ class PostagemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postagem = Postagem::find($id);
+        $postagem->delete();
+
+        return redirect('home');
     }
+
 }
