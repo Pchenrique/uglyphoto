@@ -8,4 +8,14 @@ class Postagem extends Model
 {
 	protected $table = 'postagens';
     //
+
+    public function perfil()
+    {
+        return $this->belongsTo('App\Perfil');
+    }
+
+    public function curtidas()
+    {
+        return $this->hasMany('App\Curtida');
+    }
 }
