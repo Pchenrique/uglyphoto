@@ -13,6 +13,8 @@
 
 Route::resource('perfil', 'PerfilController');
 
+Route::resource('postagem', 'PostagemController');
+
 Route::get('/', function () {
     return view('auth/login');
 });
