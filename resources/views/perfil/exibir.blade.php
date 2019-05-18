@@ -34,7 +34,7 @@
                 <strong>UP</strong>
             </div>
 
-            <div class="perfil"><strong>Perfil do(a)</strong> {{$perfil->nome}}</div>
+            <div class="perfil"><strong>Perfil do(a)</strong>{{$perfil->nome}}</div>
 
             <ul class="list-unstyled components">
                 <li class="text-center" id="biografia">
@@ -118,15 +118,20 @@
                             <div class="card-body">
                                 <p>{{count($postagem->curtidas)}}</p>
                                 <a href="{{route('curtir', $postagem->id)}}" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
-                                <a class="btn text-info" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-comment-alt"></i> Comentar</a>
+                                <a class="btn text-info" data-toggle="collapse" href="#{{$postagem->id}}" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-comment-alt"></i> Comentar</a>
                             </div>
-                            <div class="collapse" id="collapseExample1">
-                                <textarea class="form-control" id="textarea" rows="3" placeholder="Escreva um comentário"></textarea>
-                                <a href="#" class="btn text-info" ><i class="fas fa-paper-plane"></i> Comentar</a>
+                            <div class="collapse" id="{{$postagem->id}}">
+                                <form action="{{route('comentar', $postagem->id)}}" method="post">
+                                    @csrf
+                                    <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
+                                    <button name="submit"><i class="fas fa-paper-plane"></i> Comentar</a></button>
+                                </form>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
-                                <li class="list-group-item">Aqui vai aparecer os comentarios</li>
+                                @foreach($postagem->comentarios as $comentario)
+                                    <li class="list-group-item"><sapn class="text-primary">{{$comentario->perfil->nome}}:</sapn> {{$comentario->mensagem}}</li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
