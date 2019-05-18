@@ -98,7 +98,7 @@ class CurtidaController extends Controller
             $curtida = new Curtida;
             $postagem = Postagem::find($postagem_id);
             $curtida->perfil_id = $user_id;
-            $postagem->curtidas()->delete($curtida);
+            $postagem->curtidas()->where("perfil_id", "=", $user_id)->delete($curtida);
         }
         return redirect('home');
     }
