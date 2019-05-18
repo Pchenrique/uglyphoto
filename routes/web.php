@@ -13,6 +13,8 @@ Route::resource('perfil', 'PerfilController');
 
 Route::resource('postagem', 'PostagemController');
 
+Route::resource('comentario', 'ComentarioController');
+
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -22,6 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/postagem/{id}/curtir', 'CurtidaController@like')->name('curtir');
+
+Route::post('/postagem/{id}/comentario', 'ComentarioController@comentar')->name('comentar');
 //Route::get('/perfil/{id}', 'PerfilController@show')->name('perfil.show');
 //Route::post('/perfil/store', 'PerfilController@store')->name('perfil.store');
 //Route::get('/perfil/create/{id}', 'PerfilController@create')->name('perfil.create');
