@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comentario;
 
 class ComentarioController extends Controller
 {
@@ -86,5 +87,16 @@ class ComentarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function comentar(request $request, $postagem_id){
+        $user_id = auth()->user()->perfil->id;
+
+        $mensagem = new Comentario;
+        $mensagem->mensagem = $request->input('mensagem');
+        $mensagem->perfil_id = $user_id;
+        $mensagem->postagem_id = $postagem_id;
+        $mensagem->save();
+
+        return redirect('home');
     }
 }
