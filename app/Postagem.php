@@ -18,4 +18,9 @@ class Postagem extends Model
     {
         return $this->hasMany('App\Curtida');
     }
+
+    public function comentarios()
+    {
+        return $this->hasMany('App\Comentario');
+    }
 }
