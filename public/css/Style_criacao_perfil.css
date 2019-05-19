@@ -1,0 +1,12 @@
+.card{
+    margin-top: 50px;
+}
+#criar{
+    border-radius: 30px;
+    width: 100px;
+}
+.card-header{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
