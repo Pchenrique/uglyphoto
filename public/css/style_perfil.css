@@ -161,6 +161,7 @@ ul.CTAs a {
     display: block;
     border-radius: 5px;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 .perfil{
     margin-left: 35px;
@@ -189,6 +190,23 @@ ul.CTAs a {
 #formu:hover{
     background-color: #ffffff;
 }
+#exluir_publicacao{
+    background-color: #999;
+}
+#excluir_public{
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.1em;
+}
+#excluir_public:hover{
+    color: #201d1d;
+}
+.fa-trash{
+    color: #ffffff;
+    font-size: 15px;
+    margin-left: 60px;
+}
 .fa-sign-out-alt, #sair{
     color: #999;
     font-size: 16px;
@@ -214,7 +232,7 @@ ul.CTAs a {
     margin-bottom: 0px;
 }
 #botoes{
-    margin-left: 35px;
+    margin-left: 20px;
 }
 
 /*Menu resposivo*/
