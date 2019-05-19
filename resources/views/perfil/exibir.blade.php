@@ -21,7 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/style_perfil.css')}}">
+    <link rel="stylesheet" href="{{asset('css/Style_perfil.css')}}">
 </head>
 <body>
 <div class="wrapper">
@@ -56,12 +56,16 @@
             </ul>
             <div class="text-center"><Strong>Amigos</Strong></div>
             <ul class="list-unstyled CTAs">
+                <!--Fazer um foreach para mostrar todos os amigos-->
                 <li>
-                    <a class="text-center" href="#">Amigo 01</a>
+                    <div class="media">
+                        <img class="mr-2 rounded-circle" src="{{asset('imagem-perfil/'. basename($perfil->imagem))}}" alt="Generic placeholder image" width="50" height="50">
+                        <div class="media-body">
+                            <a class="amigos" href="#">Paulo Cesar</a>
+                        </div>
+                    </div>
                 </li>
-                <li>
-                   <a class="text-center" href="#">Amigo 02</a>
-                </li>
+                <!-- end foreach -->
             </ul>
         </nav>
 
@@ -110,10 +114,10 @@
                             <div class="card-body">
                                 <p>{{$postagem->legenda}}</p>
                             </div>
-                            <form id="formu" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
+                            <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
                                 @csrf
                                 @method('DELETE')
-                                <a class="text-center"> <i class="fas fa-trash-alt"></i><input type="submit"  id="excluir" value="Excluir postagem"></a>
+                                <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
                             </form>
                             <div class="card-body">
                                 <p>{{count($postagem->curtidas)}}</p>
@@ -124,7 +128,7 @@
                                 <form action="{{route('comentar', $postagem->id)}}" method="post">
                                     @csrf
                                     <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
-                                    <button name="submit"><i class="fas fa-paper-plane"></i> Comentar</a></button>
+                                    <button name="submit" class="btn btn-outline-default"><i class="fas fa-paper-plane"></i> Comentar</a></button>
                                 </form>
                             </div>
                             <ul class="list-group list-group-flush">
