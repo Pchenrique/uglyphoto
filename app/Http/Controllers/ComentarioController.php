@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comentario;
+use App\Postagem;
+use App\Perfil;
 
 class ComentarioController extends Controller
 {
@@ -97,6 +99,14 @@ class ComentarioController extends Controller
         $mensagem->postagem_id = $postagem_id;
         $mensagem->save();
 
-        return redirect('home');
+        $postagem = Postagem::find($postagem_id);
+        $perfil = Perfil::find($postagem->perfil_id);
+
+        if($postagem->perfil_id == $user_id){
+            return redirect('home');
+        }else{
+            return view('amigos.exibir', ['perfil'=>$perfil]);
+        }
+        
     }
 }
