@@ -27,8 +27,9 @@ class HomeController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $perfil = $user->perfil;
+        $amigos = Perfil::all()->where('id', '!=', $perfil->id);
 
-        return view('perfil.exibir',['perfil'=>$perfil]);
+        return view('perfil.exibir',['perfil'=>$perfil], ['amigos'=>$amigos] );
     }
 
 
