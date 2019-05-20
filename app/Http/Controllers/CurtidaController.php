@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Postagem;
 use App\Curtida;
+use App\Perfil;
 
 class CurtidaController extends Controller
 {
@@ -100,6 +101,14 @@ class CurtidaController extends Controller
             $curtida->perfil_id = $user_id;
             $postagem->curtidas()->where("perfil_id", "=", $user_id)->delete($curtida);
         }
-        return redirect('home');
+
+        $postagem = Postagem::find($postagem_id);
+        $perfil = Perfil::find($postagem->perfil_id);
+        
+        if($postagem->perfil_id == $user_id){
+            return redirect('home');
+        }else{
+            return view('amigos.exibir', ['perfil'=>$perfil]);
+        }
     }
 }
