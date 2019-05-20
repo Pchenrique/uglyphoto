@@ -23,6 +23,10 @@ class Perfil extends Model
 
     public function comentarios()
     {
-        return $this->hasMany('App\Comentarios');
+        return $this->hasMany('App\Comentario');
+    }
+    public function amigos()
+    {
+        return $this->hasMany('App\Amigo');
     }
 }
