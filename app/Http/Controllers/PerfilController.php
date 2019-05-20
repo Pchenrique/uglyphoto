@@ -25,7 +25,7 @@ class PerfilController extends Controller
 
     public function index()
     {
-        //
+        //$amigo = Perfil::find()->all();
     }
 
     /**
@@ -83,7 +83,8 @@ class PerfilController extends Controller
     public function show($id)
     {
         $perfil = Perfil::find($id);
-        return view('perfil.exibir', ['perfil'=>$perfil]);
+        $amigos = Perfil::all()->where('id', '!=', $id);
+        return view('perfil.exibir', ['perfil'=>$perfil], ['amigos'=>$amigos]);
     }
 
     /**
