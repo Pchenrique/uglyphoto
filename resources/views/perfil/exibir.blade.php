@@ -56,16 +56,16 @@
             </ul>
             <div class="text-center"><Strong>Amigos</Strong></div>
             <ul class="list-unstyled CTAs">
-                <!--Fazer um foreach para mostrar todos os amigos-->
+                @foreach($amigos as $amigo)
                 <li>
                     <div class="media">
-                        <img class="mr-2 rounded-circle" src="{{asset('imagem-perfil/'. basename($perfil->imagem))}}" alt="Generic placeholder image" width="50" height="50">
+                        <img class="mr-2 rounded-circle" src="{{asset('imagem-perfil/'. basename($amigo->imagem))}}" alt="Generic placeholder image" width="50" height="50">
                         <div class="media-body">
-                            <a class="amigos" href="#">Paulo Cesar</a>
+                            <a class="amigos" href="{{route('amigo.show', $amigo->id)}}">{{$amigo->nome}}</a>
                         </div>
                     </div>
                 </li>
-                <!-- end foreach -->
+                @endforeach
             </ul>
         </nav>
 
@@ -114,6 +114,10 @@
                             <div class="card-body">
                                 <p>{{$postagem->legenda}}</p>
                             </div>
+                            <form id="exluir_publicacao" method="get" action="{{route('postagem.edit',   $postagem->id)}}">
+                                @csrf
+                                <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Editar postagem"></a>
+                            </form>
                             <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
                                 @csrf
                                 @method('DELETE')
