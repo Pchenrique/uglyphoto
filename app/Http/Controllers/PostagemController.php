@@ -108,6 +108,8 @@ class PostagemController extends Controller
         $postagem->legenda = $request->input('legenda');
         $postagem->imagem;
         $postagem->save();
+
+        return redirect('home');
     }
 
     /**
