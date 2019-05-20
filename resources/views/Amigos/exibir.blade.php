@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Perfil</title>
+    <title>Amigo</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -59,6 +59,8 @@
                         <i class="fas fa-align-justify"></i>
                     </button>
 
+                    <a href="{{route('perfil.show', auth()->user()->perfil->id)}}" class="text-primary">Perfil de {{auth()->user()->perfil->nome}}</a>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
@@ -77,7 +79,7 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-12">
-                        <h3 class="display-5">Fotos de "Colocar nome do usuário"</h3>
+                        <h3 class="display-5">Fotos de {{$perfil->nome}}</h3>
                         <hr>
                     </div>
                 </div>
@@ -89,11 +91,6 @@
                             <div class="card-body">
                                 <p>{{$postagem->legenda}}</p>
                             </div>
-                            <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
-                            </form>
                             <div class="card-body">
                                 <p>{{count($postagem->curtidas)}}</p>
                                 <a href="{{route('curtir', $postagem->id)}}" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
