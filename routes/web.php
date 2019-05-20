@@ -15,6 +15,8 @@ Route::resource('postagem', 'PostagemController');
 
 Route::resource('comentario', 'ComentarioController');
 
+Route::resource('amigo', 'AmigoController');
+
 Route::get('/', function () {
     return view('auth/login');
 });
