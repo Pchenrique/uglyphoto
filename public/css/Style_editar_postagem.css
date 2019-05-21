@@ -1,0 +1,16 @@
+.card{
+    margin-top: 50px;
+    box-shadow: 2px 2px 8px 6px #ddd;
+}
+.card-header{
+    background-color: rgb(0, 175, 239);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-align: center;
+}
+.form-control{
+    border-radius: 30px;
+}
+.btn-outline-info{
+    border-radius: 30px;
+}
