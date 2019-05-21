@@ -163,17 +163,8 @@ ul.CTAs a {
     margin-bottom: 5px;
     margin-top: 5px;
 }
-.perfil{
-    margin-left: 35px;
-    margin-bottom: 20px;
-}
-.phone{
-    margin-left: 10px;
-    margin-bottom: 20px;
-}
-#biografia{
-    margin-left: 10px;
-    margin-bottom: 20px;
+.perfil, .phone, #biografia{
+    margin-bottom: 10px;
 }
 #excluir{
     background: none;
@@ -191,7 +182,10 @@ ul.CTAs a {
     background-color: #ffffff;
 }
 #exluir_publicacao{
-    background-color: #999;
+    background-color: rgb(0, 175, 239);
+    margin-bottom: 3px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 #excluir_public{
     background: none;
@@ -202,10 +196,19 @@ ul.CTAs a {
 #excluir_public:hover{
     color: #201d1d;
 }
-.fa-trash{
+.fa-trash, .fa-pen-square{
     color: #ffffff;
     font-size: 15px;
     margin-left: 60px;
+}
+#collapse_options{
+    background-color: none;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px; 
+    height: 50px;
+}
+.fa-angle-down{
+    margin-top: 10px;
 }
 .fa-sign-out-alt, #sair{
     color: #999;
@@ -217,7 +220,13 @@ ul.CTAs a {
 #sidebarCollapse{
     margin-right: 40px;
 }
-
+.media{
+    margin-bottom: 15px;
+}
+.card-img-top{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 /* ---------------------------------------------------
     estilo do conteudo
 ----------------------------------------------------- */
@@ -228,11 +237,23 @@ ul.CTAs a {
     min-height: 100vh;
     transition: all 0.3s;
 }
-#TextArea{
-    margin-bottom: 0px;
+#textarea{
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 #botoes{
     margin-left: 20px;
+}
+.number_like{
+    padding-left: 20px;
+}
+#btn-comentar{
+    margin-bottom: 8px;
+}
+.card{
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px 6px #ddd;
+    margin-bottom: 30px;
 }
 
 /*Menu resposivo*/
