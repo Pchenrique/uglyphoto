@@ -1,6 +1,16 @@
 .card{
     margin-top: 50px;
+    box-shadow: 2px 2px 8px 6px #ddd;
 }
 #registro_btn{
+    border-radius: 30px;
+}
+.card-header{
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgb(0, 175, 239);
+}
+.form-control{
     border-radius: 30px;
 }
