@@ -15,7 +15,7 @@ class CreateComentariosTable extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('mensagem', 150);
+            $table->string('mensagem', 255);
             $table->unsignedInteger('perfil_id');
             $table->unsignedInteger('postagem_id');
             $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');

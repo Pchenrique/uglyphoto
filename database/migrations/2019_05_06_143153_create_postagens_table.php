@@ -15,7 +15,7 @@ class CreatePostagensTable extends Migration
     {
         Schema::create('postagens', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('legenda', 150);
+            $table->string('legenda', 255);
             $table->string('caminho', 150);
             $table->unsignedInteger('perfil_id');
             $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');

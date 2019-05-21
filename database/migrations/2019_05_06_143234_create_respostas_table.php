@@ -15,7 +15,7 @@ class CreateRespostasTable extends Migration
     {
         Schema::create('respostas', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('resposta', 60);
+            $table->string('resposta', 255);
             $table->unsignedInteger('perfil_id');
             $table->unsignedInteger('comentario_id');
             $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');
