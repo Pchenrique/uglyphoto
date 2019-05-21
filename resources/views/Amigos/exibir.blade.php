@@ -93,36 +93,37 @@
                                 <a href="{{route('curtir', $postagem->id)}}" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
                             </div>
                             <button class="btn" type="button" id="collapse_options" data-toggle="collapse" data-target="#{{$postagem->id}}" aria-expanded="false" aria-controls="collapseExample">
-                                <p>Comentar <i class="fas fa-angle-down"></i></p> 
+                                <p>Opções <i class="fas fa-angle-down"></i></p> 
                             </button>
                             <div class="collapse" id="{{$postagem->id}}">
-                            <div>
-                                <p class="text-center">{{$postagem->legenda}}</p>
+                                <div>
+                                    <p class="text-center">{{$postagem->legenda}}</p>
+                                </div>
+                                <form id="exluir_publicacao" method="get" action="{{route('postagem.edit',   $postagem->id)}}">
+                                    @csrf
+                                    <a href="#"> <i class="fas fa-pen-square"></i><input type="submit"  id="excluir_public" value="Editar postagem"></a>
+                                </form>
+                                <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
+                                </form>
+                                <form action="{{route('comentar', $postagem->id)}}" method="post">
+                                   @csrf
+                                   <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
+                                   <button name="submit" class="btn btn-outline-info" id="btn-comentar"><i class="fas fa-paper-plane"></i> Comentar</a></button>
+                                </form>
+                
+                                <ul class="list-group list-group-flush">
+                                    <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
+                                    @foreach($postagem->comentarios as $comentario)
+                                        <li class="list-group-item"><sapn class="text-primary">{{$comentario->perfil->nome}}:</sapn> {{$comentario->mensagem}}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <form id="exluir_publicacao" method="get" action="{{route('postagem.edit',   $postagem->id)}}">
-                                @csrf
-                                <a href="#"> <i class="fas fa-pen-square"></i><input type="submit"  id="excluir_public" value="Editar postagem"></a>
-                            </form>
-                            <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
-                            </form>
-                            <form action="{{route('comentar', $postagem->id)}}" method="post">
-                               @csrf
-                               <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
-                               <button name="submit" class="btn btn-outline-info" id="btn-comentar"><i class="fas fa-paper-plane"></i> Comentar</a></button>
-                            </form>
-                            <ul class="list-group list-group-flush">
-                                <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
-                                @foreach($postagem->comentarios as $comentario)
-                                    <li class="list-group-item"><sapn class="text-primary">{{$comentario->perfil->nome}}:</sapn> {{$comentario->mensagem}}</li>
-                                @endforeach
-                            </ul>
                         </div>
                     </div>
                     @endforeach
-                </div>
             </div>
         </div>
     </div>
