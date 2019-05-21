@@ -1,55 +1,76 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Editar perfil</div>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @if (session('erro'))
-                        <div class="alert alert-danger">
-                            {{ session('erro') }}
-                        </div>
-                    @endif
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-                    <form action="{{route('perfil.update', $perfil->id)}}" method="POST" enctype="multipart/form-data">
-						@csrf
-						@method('PUT')
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-							<div class="form-group"> 
-					       		<label>Foto do Perfil</label>  
-					            <input class="" name="imagem" type="file">
-					        </div>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
-					       	<div class="form-group"> 
-					       		<label>Nome</label>  
-					            <input class="form-control" name="nome" type="text" value="{{$perfil->nome}}">
-					        </div>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/Style_editar_perfil.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Editar perfil</div>
 
-					        <div class="form-group"> 
-					       		<label>biografia</label>  
-					            <input class="form-control" name="biografia" type="text" value="{{$perfil->biografia}}">
-					        </div>
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @if (session('erro'))
+                            <div class="alert alert-danger">
+                                {{ session('erro') }}
+                            </div>
+                        @endif
 
-					         <div class="form-group"> 
-					       		<label>Numero</label>  
-					            <input class="form-control" name="numero" type="text" value="{{$perfil->numero}}">
-					        </div>
+                        <form action="{{route('perfil.update', $perfil->id)}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
 
-					        <button type="submit">Atualizar</button>   
-					    
-					</form>
+                                <div class="form-group"> 
+                                    <label>Foto do Perfil</label>  
+                                    <input class="" name="imagem" type="file">
+                                </div>
 
+                                <div class="form-group"> 
+                                    <label>Nome</label>  
+                                    <input class="form-control" name="nome" type="text" value="{{$perfil->nome}}">
+                                </div>
+
+                                <div class="form-group"> 
+                                    <label>biografia</label>  
+                                    <input class="form-control" name="biografia" type="text" value="{{$perfil->biografia}}">
+                                </div>
+
+                                <div class="form-group"> 
+                                    <label>Numero</label>  
+                                    <input class="form-control" name="numero" type="text" value="{{$perfil->numero}}">
+                                </div>
+
+                                <button class="btn btn-outline-info" type="submit">Atualizar</button>   
+                            
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+</body>
+</html>
