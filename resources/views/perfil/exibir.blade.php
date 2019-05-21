@@ -34,9 +34,9 @@
                 <strong>UP</strong>
             </div>
 
-            <div class="perfil"><strong>Perfil do(a)</strong>{{$perfil->nome}}</div>
+            <div class="perfil text-center"><strong>Perfil do(a)</strong> {{$perfil->nome}}</div>
 
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components text-center">
                 <li class="text-center" id="biografia">
                     <i class="fas fa-user-edit"></i> <strong>Biografia:</strong> {{$perfil->biografia}}
                 </li>
@@ -110,37 +110,40 @@
                     @foreach($perfil->postagens as $postagem)
                     <div class="col-sm-4">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{asset('imagem-postagem/'. basename($postagem->caminho))}}" alt="Card image cap">
-                            <div class="card-body">
-                                <p>{{$postagem->legenda}}</p>
-                            </div>
-                            <form id="exluir_publicacao" method="get" action="{{route('postagem.edit',   $postagem->id)}}">
-                                @csrf
-                                <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Editar postagem"></a>
-                            </form>
-                            <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
-                            </form>
-                            <div class="card-body">
-                                <p>{{count($postagem->curtidas)}}</p>
+                            <img class="card-img-top" src="{{asset('imagem-postagem/'. basename($postagem->caminho))}}" alt="Card image cap" style="width: 18rem; height:20rem;">
+                            <div>
+                                <span class="number_like">{{count($postagem->curtidas)}}</span>
                                 <a href="{{route('curtir', $postagem->id)}}" class="btn text-info" id="botoes"><i class="fas fa-thumbs-up"></i> Curtir</a>
-                                <a class="btn text-info" data-toggle="collapse" href="#{{$postagem->id}}" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-comment-alt"></i> Comentar</a>
                             </div>
+                            <button class="btn" type="button" id="collapse_options" data-toggle="collapse" data-target="#{{$postagem->id}}" aria-expanded="false" aria-controls="collapseExample">
+                                <p>Opções <i class="fas fa-angle-down"></i></p> 
+                            </button>
                             <div class="collapse" id="{{$postagem->id}}">
-                                <form action="{{route('comentar', $postagem->id)}}" method="post">
+                                <div>
+                                    <p class="text-center">{{$postagem->legenda}}</p>
+                                </div>
+                                <form id="exluir_publicacao" method="get" action="{{route('postagem.edit',   $postagem->id)}}">
                                     @csrf
-                                    <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
-                                    <button name="submit" class="btn btn-outline-default"><i class="fas fa-paper-plane"></i> Comentar</a></button>
+                                    <a href="#"> <i class="fas fa-pen-square"></i><input type="submit"  id="excluir_public" value="Editar postagem"></a>
                                 </form>
+                                <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
+                                </form>
+                                <form action="{{route('comentar', $postagem->id)}}" method="post">
+                                   @csrf
+                                   <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
+                                   <button name="submit" class="btn btn-outline-info" id="btn-comentar"><i class="fas fa-paper-plane"></i> Comentar</a></button>
+                                </form>
+                
+                                <ul class="list-group list-group-flush">
+                                    <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
+                                    @foreach($postagem->comentarios as $comentario)
+                                        <li class="list-group-item"><sapn class="text-primary">{{$comentario->perfil->nome}}:</sapn> {{$comentario->mensagem}}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <!---Aqui precisa fazer um foreach para mostrar todos os comentários--->
-                                @foreach($postagem->comentarios as $comentario)
-                                    <li class="list-group-item"><sapn class="text-primary">{{$comentario->perfil->nome}}:</sapn> {{$comentario->mensagem}}</li>
-                                @endforeach
-                            </ul>
                         </div>
                     </div>
                     @endforeach
