@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="form-group"> 
-                                    <label>Numero</label>  
+                                    <label>Número</label>  
                                     <input class="form-control" name="numero" type="text">
                                 </div>
 
