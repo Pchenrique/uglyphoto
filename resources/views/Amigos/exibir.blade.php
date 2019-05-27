@@ -99,15 +99,6 @@
                                 <div>
                                     <p class="text-center">{{$postagem->legenda}}</p>
                                 </div>
-                                <form id="exluir_publicacao" method="get" action="{{route('postagem.edit',   $postagem->id)}}">
-                                    @csrf
-                                    <a href="#"> <i class="fas fa-pen-square"></i><input type="submit"  id="excluir_public" value="Editar postagem"></a>
-                                </form>
-                                <form id="exluir_publicacao" method="post" action="{{route('postagem.destroy',   $postagem->id)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#"> <i class="fas fa-trash"></i><input type="submit"  id="excluir_public"value="Excluir postagem"></a>
-                                </form>
                                 <form action="{{route('comentar', $postagem->id)}}" method="post">
                                    @csrf
                                    <textarea class="form-control" id="textarea" rows="1" placeholder="Escreva um comentário" name="mensagem"></textarea>
